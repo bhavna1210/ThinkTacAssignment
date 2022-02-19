@@ -1,0 +1,169 @@
+    <html lang="en" ng-app="myApp" ng-controller="myCtrl">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap cdn -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- Local CSS file -->
+        <link rel="stylesheet" href="./css/style.css">
+        <!-- Google font  -->
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
+        <title>{{title}}</title>
+    </head>
+
+    <body>
+
+        <!-- Nav section starts here -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <div id="logo">
+                    <!-- <img src="./images/logo.jpg" alt="ThinkTacLogo"> -->
+                </div>
+                <a class="navbar-brand active" href="#home">ThinkTac</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                            <select class="form-select" ng-model="selectedSubject"
+                                ng-change="getSubjectData(selectedSubject)">
+                                <option value="" selected disabled>Subject</option>
+                                <option ng-value="subject" ng-repeat="subject in uniqueSubject track by $index">
+                                    {{subject}}</option>
+                            </select>
+                        </li>
+                        <li class="nav-item">
+                            <select class="form-select" ng-model="selectedLanguage"
+                                ng-change="getLanguageData(selectedLanguage)">
+                                <option value="" selected disabled>Language</option>
+                                <option ng-value="language" ng-repeat="language in languageList track by $index">
+                                    {{language}}</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" ng-change="getSearchData(searchTxt)"
+                            ng-model="searchTxt" placeholder="Search Here" aria-label="Search">
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Nav section ends here -->
+
+        <!-- Home section starts here -->
+        <section id="home">
+            <div class="container-fluid">
+                <div class="my-5 pt-5 d-flex flex-md-wrap justify-content-around bd-highlight">
+                    <div class="card mb-3 w-30" style="width:30% !important" ng-repeat="a in allData track by $index">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src={{a.IconUrl}} class="img-fluid rounded-start" alt="icon">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{a.Name}}</h5>
+                                    <button type="button" class="btn btn-warning">{{a.Version}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" role="alert" ng-hide="allData[0]">
+                        <h3>No Data Available</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Home section ends here -->
+
+        <!-- About Us section starts here -->
+        <section id="about">
+            <div class="container-fluid mb-5">
+                <h1 class="text-center text-capitalize pt-5">About Us</h1>
+                <hr class="w-25 mx-auto">
+                <div class="row my-5">
+                    <div class="col-lg-6 col-md-6 col--12">
+                        <img src="./images/dummy.jpg" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col--12">
+                        <h1>About ThinkTac</h1>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis rem odit neque placeat
+                            reprehenderit et aspernatur cumque enim eveniet sint ad doloremque. Lorem ipsum dolor sit
+                            amet, consectetur adipisicing elit. Vitae pariatur possimus consequatur id velit rem
+                            accusamus sint cupiditate, accusantium adipisci facere saepe nulla! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint, illum?</p>
+                        <button class="btn bg-primary text-white">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Us section ends here -->
+
+        <!-- Contact Us starts here -->
+        <section id="contact">
+            <div class="container mb-5">
+                <h1 class="text-center text-capitalize pt-5">Contact Us</h1>
+                <hr class="w-25 mx-auto">
+                <div class="w-50 mx-auto mt-5">
+                    <form action="">
+                        <div class="form-group mb-3">
+                            <label for="name">Your Name:</label>
+                            <input type="text" class="form-control" placeholder="Enter your name" id="name">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email">Email address:</label>
+                            <input type="email" class="form-control" placeholder="Enter email" id="email">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="mobile">Mobile:</label>
+                            <input type="number" class="form-control" placeholder="Enter your mobile" id="mobile">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="msg">Message:</label>
+                            <textarea class="form-control" name="msg" id="msg"></textarea>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox"> Remember me
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Us ends here -->
+
+        <!-- Footer starts here -->
+        <footer>
+            <div class="bg-dark text-center text-white p-2 fixed-bottom">
+                2022 &copy; Tactile Education Services Pvt. Ltd. All rights reserved.
+            </div>
+        </footer>
+        <!-- Footer ends here -->
+
+        <!-- Script files starts here -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="./js/myScript.js"></script>
+        <!-- Script files ends here -->
+
+    </body>
+
+    </html>
